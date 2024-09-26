@@ -1,7 +1,7 @@
-<%- include ('../../partials/header.html') %>
+<%- include ('../../partials/header.ejs') %>
     </head>
 
-    <%- include ("../../partials/userNav.html") %>
+    <%- include ("../../partials/userNav.ejs") %>
 
         <body>
             <!--SEARCH BAR-->
@@ -19,7 +19,8 @@
                             </div>
 
                             <div class="col-md-5 p-1">
-                                <input name="searchName" type="text" class="form-control" placeholder="Search Books" required>
+                                <input name="searchName" type="text" class="form-control" placeholder="Search Books"
+                                    required>
                             </div>
 
                             <div class="col-md-2 p-1">
@@ -30,7 +31,7 @@
                 </div>
             </section>
 
-            <%- include ('../../partials/alerts.html') %>
+            <%- include ('../../partials/alerts.ejs') %>
                 <!--BOOKS-->
                 <section id="browse_books" class="mt-5">
                     <div class="container">
@@ -106,4 +107,4 @@
                     </div>
                 </section>
 
-                <%- include ('../../partials/footer.html') %>
+                <%- include ('../../partials/footer.ejs') %>

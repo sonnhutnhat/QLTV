@@ -1,11 +1,11 @@
-<%- include ('../partials/header.html') %>
+<%- include ('../partials/header.ejs') %>
 
   </head>
 
   <body>
 
     <!--NAVIGATION BAR FOR ADMIN-->
-    <%- include ('../partials/adminNav.html') %>
+    <%- include ('../partials/adminNav.ejs') %>
 
 
       <header id="main-header" class="py-2 bg-primary text-white">
@@ -61,9 +61,11 @@
                 </div>
                 <hr>
                 <div class="">
-                  <p><strong>User name :</strong> <%=currentUser.username%>
+                  <p><strong>User name :</strong>
+                    <%=currentUser.username%>
                   </p>
-                  <p><strong>Email: </strong>  <%=currentUser.email%>
+                  <p><strong>Email: </strong>
+                    <%=currentUser.email%>
                   </p>
                 </div>
               </div>
@@ -158,14 +160,14 @@
       <script>
         $('#confirmPassword').on('keyup', function () {
           if ($(this).val() == $('#password').val()) {
-            $('#message').html('Matched').css('color', 'green');
+            $('#message').ejs('Matched').css('color', 'green');
             $('#button').removeClass("d-none")
           }
           else {
-            $('#message').html('Not matched!').css('color', 'red');
+            $('#message').ejs('Not matched!').css('color', 'red');
             $('#button').addClass("d-none");
           }
         });
       </script>
 
-      <%- include ('../partials/footer.html') %>
+      <%- include ('../partials/footer.ejs') %>

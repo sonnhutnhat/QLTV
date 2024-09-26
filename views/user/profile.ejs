@@ -1,11 +1,11 @@
-<%- include ('../partials/header.html') %>
+<%- include ('../partials/header.ejs') %>
 
     </head>
 
     <body>
 
         <!--NAVIGATION BAR FOR USER-->
-        <%- include ('../partials/userNav.html') %>
+        <%- include ('../partials/userNav.ejs') %>
 
             <!--DASHBOARD SECTION-->
             <header id="main-header" class="py-2 bg-info text-white">
@@ -51,7 +51,7 @@
                 </div>
             </section>
 
-            <%- include ('../partials/alerts.html') %>
+            <%- include ('../partials/alerts.ejs') %>
 
                 <!--PROFILE-->
                 <section class="mt-4">
@@ -61,17 +61,23 @@
                                 <h4 class="text-center pb-3">Personal Informations</h4>
 
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item"><strong>First Name : </strong> <%=currentUser.firstName%>
+                                    <li class="list-group-item"><strong>First Name : </strong>
+                                        <%=currentUser.firstName%>
                                     </li>
-                                    <li class="list-group-item"><strong>Last Name : </strong> <%=currentUser.lastName%>
+                                    <li class="list-group-item"><strong>Last Name : </strong>
+                                        <%=currentUser.lastName%>
                                     </li>
-                                    <li class="list-group-item"><strong>Username : </strong> <%=currentUser.username%>
+                                    <li class="list-group-item"><strong>Username : </strong>
+                                        <%=currentUser.username%>
                                     </li>
-                                    <li class="list-group-item"><strong>Joined : </strong> <%=currentUser.joined.toDateString()%>
+                                    <li class="list-group-item"><strong>Joined : </strong>
+                                        <%=currentUser.joined.toDateString()%>
                                     </li>
-                                    <li class="list-group-item"><strong>Email : </strong> <%=currentUser.email%>
+                                    <li class="list-group-item"><strong>Email : </strong>
+                                        <%=currentUser.email%>
                                     </li>
-                                    <li class="list-group-item"><strong>Address : </strong> <%=currentUser.address%>
+                                    <li class="list-group-item"><strong>Address : </strong>
+                                        <%=currentUser.address%>
                                     </li>
                                 </ul>
                             </div>
@@ -91,7 +97,8 @@
                                 <button class="close" data-dismiss="modal"><span>&times;</span></button>
                             </div>
                             <div class="modal-body">
-                                <form action="/user/<%= currentUser.username %>/delete-profile?_method=DELETE" method="POST">
+                                <form action="/user/<%= currentUser.username %>/delete-profile?_method=DELETE"
+                                    method="POST">
                                     <input type="submit" value="Yes" class="btn btn-danger btn-block m-1" />
                                 </form>
                                 <input type="button" value="No" data-dismiss="modal"
@@ -110,7 +117,8 @@
                                 <button class="close" data-dismiss="modal"><span>&times;</span></button>
                             </div>
                             <div class="modal-body">
-                                <form action="/user/<%= currentUser.username %>/update-password?_method=PUT" method="POST">
+                                <form action="/user/<%= currentUser.username %>/update-password?_method=PUT"
+                                    method="POST">
                                     <div class="form-group">
                                         <label for="password" class="form-control-label">Old Password</label>
                                         <input type="password" name="oldPassword" class="form-control" />
@@ -142,7 +150,8 @@
                                 <button class="close" data-dismiss="modal"><span>&times;</span></button>
                             </div>
                             <div class="modal-body">
-                                <form action="/user/<%= currentUser.username %>/update-profile?_method=PUT" method="POST">
+                                <form action="/user/<%= currentUser.username %>/update-profile?_method=PUT"
+                                    method="POST">
                                     <div class="form-group">
                                         <label for="firstName" class="form-control-label">Edit First Name</label>
                                         <input type="text" name="firstName" class="form-control"
@@ -190,13 +199,13 @@
                 <script>
                     $("#confirmPassword").on("keyup", function () {
                         if ($(this).val() == $("#password").val()) {
-                            $("#message").html("Matched").css("color", "green");
+                            $("#message").ejs("Matched").css("color", "green");
                             $("#button").removeClass("d-none");
                         } else {
-                            $("#message").html("Not matched!").css("color", "red");
+                            $("#message").ejs("Not matched!").css("color", "red");
                             $("#button").addClass("d-none");
                         }
                     });
-               </script>
+                </script>
 
-                <%- include ('../partials/footer.html') %>
+                <%- include ('../partials/footer.ejs') %>

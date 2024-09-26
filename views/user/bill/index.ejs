@@ -1,11 +1,11 @@
-<%- include ('../../partials/header.html') %>
+<%- include ('../../partials/header.ejs') %>
 
     </head>
 
     <body>
 
         <!--NAVIGATION BAR FOR ADMIN-->
-        <%- include ('../../partials/userNav.html') %>
+        <%- include ('../../partials/userNav.ejs') %>
 
             <div class="container mt-5 pt-2">
                 <div class="row">
@@ -18,7 +18,8 @@
                             Lưu ý về trạng thái: -1: Quá hạn, 0: Đang mượn
                         </li>
                         <% if(user.point < 2) { %>
-                            <h3 class="alert alert-danger">Bạn đang ở mức độ báo động cao. Vui lòng hoàn thiện các thủ tục trả sách...</h3>
+                            <h3 class="alert alert-danger">Bạn đang ở mức độ báo động cao. Vui lòng hoàn thiện các thủ
+                                tục trả sách...</h3>
                             <% } %>
                                 <li class="list-group-item">
                                     <a href="/user"> Quay lại trang chủ </a>
@@ -28,19 +29,25 @@
                         <% bills.forEach(bill=> { %>
                             <ul class="list-group list-group-flush mt-3">
                                 <li class="list-group-item" style="color:chocolate">
-                                   <h1>
-                                    Mã phiếu mượn:
-                                   </h1> <%= bill._id %>
+                                    <h1>
+                                        Mã phiếu mượn:
+                                    </h1>
+                                    <%= bill._id %>
                                 </li>
-                                <li class="list-group-item"><strong> Title :</strong> <%=bill.book.title%>
+                                <li class="list-group-item"><strong> Title :</strong>
+                                    <%=bill.book.title%>
                                 </li>
-                                <li class="list-group-item"><strong> User name :</strong> <%=bill.user.username%>
+                                <li class="list-group-item"><strong> User name :</strong>
+                                    <%=bill.user.username%>
                                 </li>
-                                <li class="list-group-item"><strong> Date :</strong> <%=bill.date.toDateString()%>
+                                <li class="list-group-item"><strong> Date :</strong>
+                                    <%=bill.date.toDateString()%>
                                 </li>
-                                <li class="list-group-item"><strong> Dead date :</strong> <%=bill.deadDate.toDateString()%>
+                                <li class="list-group-item"><strong> Dead date :</strong>
+                                    <%=bill.deadDate.toDateString()%>
                                 </li>
-                                <li class="list-group-item"><strong> Status :</strong> <%=bill.status%>
+                                <li class="list-group-item"><strong> Status :</strong>
+                                    <%=bill.status%>
                                 </li>
                             </ul>
                             <% }); %>
@@ -50,4 +57,4 @@
             </div>
             </div>
 
-            <%- include ('../../partials/footer.html') %>
+            <%- include ('../../partials/footer.ejs') %>

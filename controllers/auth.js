@@ -7,7 +7,7 @@ if (process.env.NODE_ENV !== "production") require("dotenv").config();
 const User = require("../models/user");
 
 exports.getLandingPage = async (req, res) => {
-  return res.render("landing.html");
+  return res.render("landing.ejs");
 };
 
 exports.getAdminLoginPage = (req, res, next) => {
@@ -16,7 +16,7 @@ exports.getAdminLoginPage = (req, res, next) => {
 
 exports.getAdminLogout = (req, res, next) => {
   req.logout(err => {
-    if(err) return next(err);
+    if (err) return next(err);
     res.redirect("/");
   });
 };
@@ -64,7 +64,7 @@ exports.getUserLoginPage = (req, res, next) => {
 
 exports.getUserLogout = async (req, res, next) => {
   req.logout(async (err) => {
-    if(err) return next(err);
+    if (err) return next(err);
     await req.session.destroy();
     res.redirect("/");
   });
@@ -92,8 +92,8 @@ exports.postUserSignUp = async (req, res, next) => {
     });
   } catch (err) {
     req.flash(
-        "error",
-        "Thông tin đăng ký giống với một người đã tồn tại. Vui lòng đăng ký lại với tên khác!!!"
+      "error",
+      "Thông tin đăng ký giống với một người đã tồn tại. Vui lòng đăng ký lại với tên khác!!!"
     );
     return res.redirect("back");
   }
