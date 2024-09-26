@@ -1,44 +1,120 @@
 <%- include ('../partials/header.ejs') %>
+    <style>
+        /* login.css */
 
+        body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .login-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .login-card {
+            background-color: #1a1a1a;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-card h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #333;
+            background-color: #2a2a2a;
+            color: #ffffff;
+        }
+
+        .form-control::placeholder {
+            color: #888;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4a90e2;
+            color: #ffffff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-btn:hover {
+            background-color: #357ab8;
+        }
+
+        .login-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .login-links a {
+            color: #4a90e2;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .login-links a:hover {
+            color: #357ab8;
+        }
+    </style>
     </head>
 
     <body>
-
-        <!-- ALERTS -->
-        <%- include ('../partials/alerts.ejs') %>
-
-            <section id="adminLoginForm">
-                <div class="container mt-5">
-                    <div class="row">
-                        <div class="col-md-6 offset-md-3">
-                            <div class="card">
-                                <div class="card-header text-center">
-                                    <h4>Admin Login</h4>
-                                </div>
-                                <div class="card-block">
-                                    <form class="p-3" action="/auth/admin/login" method="POST">
-                                        <div class="form-group">
-                                            <label class="form-control-label">Username</label>
-                                            <input type="text" name="username" placeholder="Username"
-                                                class="form-control" required />
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="form-control-label">Password</label>
-                                            <input type="password" name="password" placeholder="Password"
-                                                class="form-control" required />
-                                        </div>
-
-                                        <p> Chưa có tài khoản? <a class="nav-link" href="/auth/admin/signup"> Đăng ký
-                                            </a> </p>
-
-                                        <button type="submit" class="btn btn-primary btn-block">Login!</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+        <div class="login-container">
+            <div class="login-card">
+                <h2>Sign in to your account</h2>
+                <form action="/auth/admin/login" method="POST">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" placeholder="Enter your username"
+                            class="form-control" required />
                     </div>
-                </div>
-            </section>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Enter your password"
+                            class="form-control" required />
+                    </div>
+                    <div class="login-links">
+                        <a href="#">Forgot password?</a>
+                    </div>
+                    <% if (typeof errorMessage !=='undefined' ) { %>
+                        <div class="alert alert-danger text-center">
+                            <%= errorMessage %>
+                        </div>
+                        <% } %>
+                            <button type="submit" class="login-btn">Sign in</button>
+                </form>
 
-            <%- include ('../partials/footer.ejs') %>
+                <div class="login-links">
+                    <span>Not a member? <a href="/auth/admin/signup">Start a 14-day free trial</a></span>
+                </div>
+            </div>
+        </div>
+        <%- include ('../partials/footer.ejs') %>
+    </body>
