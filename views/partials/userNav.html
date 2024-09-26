@@ -1,0 +1,58 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark p-0">
+    <div class="container">
+        <a class="navbar-brand" href="/user/<%= currentUser.username %>">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <li class="nav-item px-2">
+                    <a class="nav-link" href="/user/<%= currentUser.username %>/bills">Thông tin phiếu đang mượn/quá hạn</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav">
+                <li class="nav-item px-2">
+                    <a class="nav-link" href="/user/<%= currentUser.username %>/books/all/all/1">Đăng ký mượn sách</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item px-2">
+                    <a class="nav-link" href="/user/<%=currentUser.username%>/profile">
+                       Thông tin tài khoản
+                    </a>
+                </li>
+
+                <li class="nav-item px-2">
+                    <a class="nav-link" href="" data-toggle="modal" data-target="#logoutUserModal"> Đăng xuất </a>
+                </li>
+            </ul>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+<div class="modal fade" id="logoutUserModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-danger text-white">
+          <h5 class="modal-title" id="logoutUserModalLabel">
+            Khi bạn lựa chọn đồng ý, bạn sẽ đăng xuất khỏi hệ thống. Bạn chắc chắn với điều này không?
+          </h5>
+          <button class="close" data-dismiss="modal"><span>&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <form action="/auth/user/logout" method="GET">
+  
+            <input type="submit" value="Yes" class="btn btn-danger btn-block m-1">
+  
+          </form>
+          <input type="button" value="No" data-dismiss="modal" class="btn btn-success btn-block m-1">
+        </div>
+      </div>
+    </div>
+  </div>

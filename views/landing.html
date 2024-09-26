@@ -1,0 +1,23 @@
+<%- include ('./partials/header.html') %>
+    </head>
+
+    <body>
+        <hr>
+        <div class="container">
+            <h1 class="text-center">Quản lý thư viện 20231</h1>
+
+            <%- include ('./partials/alerts.html') %>
+                <div class="row mt-3">
+                    <div class="col-md-5 mx-auto text-center p-4">
+                        <div class="mt-3">
+                            <a href="/auth/admin/login" class="btn btn-block btn-info">Đăng nhập với tư cách Admin</a>
+                        </div>
+
+                        <div class="mt-3">
+                            <a href="/auth/user/login" class="btn btn-block btn-info">Đăng nhập với tư cách User</a>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+<%- include ('./partials/footer.html') %>

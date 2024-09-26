@@ -1,0 +1,38 @@
+<%- include ('../../partials/header.html') %>
+
+    </head>
+
+    <body>
+        <!--NAVIGATION BAR FOR USER-->
+        <%- include ('../../partials/userNav.html') %>
+
+            <!--BOOK DETAILS-->
+
+            <div class="container mt-3">
+                <div class="row justify-content-center">
+                    <div class="col-md-10">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="text-center">
+                                   <strong>Title : </strong> <%= book.title %>
+                                </h4>
+                            </div>
+                            <p class="text-muted px-3 py-2">Author : <%= book.author %> </p>
+                            <p class="text-muted px-3 py-2">Category : <%= book.category %> </p>
+                            <p class="text-muted px-3 py-2">Published at : <%= book.published_at.toDateString() %> </p>
+                            <% if(book.remain_book && user.point >= 2) { %>
+                                <h2 class="text-muted px-3 py-2">Số sách còn lại trong thư viện : <%= book.remain_book %> quyển </h2>
+                                <form action="" method="POST" class="px-3 py-2">
+                                    <button type="submit" class="btn btn-primary ">Mượn sách này!</button>
+                                </form>
+                            <% } else { %>
+                                <h2 class="alert alert-danger px-3 py-2">Bạn không được phép mượn sách nữa vì không đủ điểm point hoặc số lượng loại sách trong thư viện đã hết...</h2>
+                            <% } %>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            <%- include ('../../partials/footer.html') %>

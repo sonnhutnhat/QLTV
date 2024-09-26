@@ -1,0 +1,58 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark p-0 sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="/admin">Home</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav" id="myNav">
+        <li class="nav-item px-2">
+          <a class="nav-link" href="/admin/books/all/all/1">Quản lý sách</a>
+        </li>
+
+        <li class="nav-item px-2">
+          <a class="nav-link" href="/admin/users/1">Quản lý người dùng</a>
+        </li>
+
+        <li class="nav-item px-2">
+          <a class="nav-link" href="/admin/bills/all/all/1">Quản lý phiếu mượn</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item px-2">
+          <a class="nav-link" href="/admin/profile/<%=currentUser.username%>">
+            Thông tin tài khoản
+          </a>
+        </li>
+
+        <li class="nav-item px-2">
+          <a class="nav-link" href="" data-toggle="modal" data-target="#logoutAdminModal"> Đăng xuất </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="modal fade" id="logoutAdminModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title" id="logoutAdminModalLabel">
+          Khi bạn lựa chọn đồng ý, bạn sẽ đăng xuất khỏi hệ thống. Bạn chắc chắn với điều này không?
+        </h5>
+        <button class="close" data-dismiss="modal"><span>&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <form action="/auth/admin/logout" method="GET">
+
+          <input type="submit" value="Yes" class="btn btn-danger btn-block m-1">
+
+        </form>
+        <input type="button" value="No" data-dismiss="modal" class="btn btn-success btn-block m-1">
+      </div>
+    </div>
+  </div>
+</div>
