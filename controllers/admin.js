@@ -26,7 +26,7 @@ exports.getDashboard = async (req, res, next) => {
 exports.deleteProfile = async (req, res, next) => {
   try {
     await User.findByIdAndRemove(req.user._id);
-    req.flash({success: `Bạn đã xoá tài khoản ${req.user._id} ...`})
+    req.flash({ success: `Bạn đã xoá tài khoản ${req.user._id} ...` })
     res.redirect("/");
   } catch (err) {
     console.log(err);
@@ -73,7 +73,7 @@ exports.getBooks = async (req, res, next) => {
     });
   } catch (err) {
     console.log(err);
-    req.flash({"error": "Lỗi tải trang..."})
+    req.flash({ "error": "Lỗi tải trang..." })
     return res.redirect("back");
   }
 };
@@ -110,7 +110,7 @@ exports.findBooks = async (req, res, next) => {
     });
   } catch (err) {
     console.log(err);
-    req.flash({"error": "Lỗi tải trang..."})
+    req.flash({ "error": "Lỗi tải trang..." })
     return res.redirect("back");
   }
 };
@@ -126,7 +126,7 @@ exports.getUpdateBook = async (req, res, next) => {
     });
   } catch (err) {
     console.log(err);
-    req.flash({"error": "Lỗi tải trang..."})
+    req.flash({ "error": "Lỗi tải trang..." })
     return res.redirect("back");
   }
 };
@@ -139,7 +139,7 @@ exports.postUpdateBook = async (req, res, next) => {
 
     await Book.findByIdAndUpdate(book_id, book_info);
 
-    console.log("update thành công..."); 
+    console.log("update thành công...");
     req.flash({
       "success": `Cập nhật dữ liệu sách ${book_id} thành công...`,
     });
@@ -188,8 +188,9 @@ exports.getUsers = async (req, res, next) => {
     });
   } catch (err) {
     console.log(err);
-    req.flash( {
-      error: "Xảy ra lỗi trong quá trình hiển thị dữ liệu..."});
+    req.flash({
+      error: "Xảy ra lỗi trong quá trình hiển thị dữ liệu..."
+    });
     res.redirect("back");
   }
 };
@@ -230,7 +231,7 @@ exports.findUsers = async (req, res, next) => {
     });
   } catch (err) {
     console.log(err);
-    req.flash( {
+    req.flash({
       error: "Xảy ra lỗi trong quá trình tìm kiếm người dùng này",
     });
     res.redirect("back");
@@ -374,7 +375,7 @@ exports.putUpdateAdminPassword = async (req, res, next) => {
     req.flash({
       error:
         "Sai mật khẩu cũ hoặc có lỗi trong quá trình thay đổi mật khẩu mới. Vui lòng thử lại sau..."
-  });
+    });
     res.redirect("back");
   }
 };
@@ -397,7 +398,7 @@ exports.getBills = async (req, res, next) => {
       .skip(PER_PAGE * page - PER_PAGE)
       .limit(PER_PAGE);
 
-    res.render("admin/billManage/index", {
+    res.render("admin/billManage/index.ejs", {
       bills: bills,
       current: page,
       pages: Math.ceil(bills_count / PER_PAGE),
@@ -421,17 +422,17 @@ exports.findBills = async (req, res, next) => {
     console.log(filter, value);
 
     let searchObj = {};
-     if(filter === "user"){
+    if (filter === "user") {
       searchObj["user.username"] = {
         $regex: value,
         $options: "i"
       };
-     } else {
+    } else {
       searchObj["book.title"] = {
         $regex: value,
         $options: "i"
       }
-     };
+    };
 
     const bills_count = await Bill.find(searchObj).countDocuments();
 
@@ -461,7 +462,7 @@ exports.updateBill = async (req, res, next) => {
     const status = req.body;
     const bill_id = req.params.bill_id;
 
-    if(status.status === '1'){
+    if (status.status === '1') {
       status.returnDate = Date.now();
     }
 

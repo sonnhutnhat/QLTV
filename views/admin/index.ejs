@@ -1,58 +1,88 @@
 <%- include ('../partials/header.ejs') %>
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
 
+    .dashboard-card {
+      border-radius: 15px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .dashboard-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+  </style>
   </head>
 
   <body>
-
     <!--NAVIGATION BAR FOR ADMIN-->
     <%- include ('../partials/adminNav.ejs') %>
 
       <!--DASHBOARD SECTION-->
-      <header id="main-header" class="py-2 bg-primary text-white">
+      <header id="main-header" class="py-4 bg-white text-black">
         <div class="container">
           <div class="row">
             <div class="col-md-6">
-              <h1><i class="fa fa-gear"></i> Dashboard</h1>
+              <h1><i class="fa fa-cog"></i> Dashboard</h1>
             </div>
           </div>
         </div>
       </header>
-      <hr>
 
       <%- include("../partials/alerts.ejs") %>
-        <div class="row justify-content-center">
-          <div class="col-md-3 text-center bg-primary text-white p-3 m-3">
-            <div class="card-block">
-              <h3>Books</h3>
-              <h1 class="display-4"><i class="fa fa-book"></i>
-                <%=books_count%>
-              </h1>
-              <a href="/admin/books/all/all/1" class="btn btn-outline-light">View</a>
+
+        <div class="container mt-5">
+          <div class="row">
+            <div class="col-md-4 mb-4">
+              <div class="card dashboard-card bg-info text-white h-100">
+                <div class="card-body text-center">
+                  <i class="fas fa-book card-icon"></i>
+                  <h3 class="card-title">Sách</h3>
+                  <h2 class="display-4">
+                    <%=books_count%>
+                  </h2>
+                  <a href="/admin/books/all/all/1" class="btn btn-outline-light mt-3">Xem chi tiết</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+              <div class="card dashboard-card bg-success text-white h-100">
+                <div class="card-body text-center">
+                  <i class="fas fa-users card-icon"></i>
+                  <h3 class="card-title">Người dùng</h3>
+                  <h2 class="display-4">
+                    <%=users_count%>
+                  </h2>
+                  <a href="/admin/users/1" class="btn btn-outline-light mt-3">Xem chi tiết</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+              <div class="card dashboard-card bg-warning text-white h-100">
+                <div class="card-body text-center">
+                  <i class="fas fa-file-invoice-dollar card-icon"></i>
+                  <h3 class="card-title">Phiếu mượn</h3>
+                  <h2 class="display-4">
+                    <%=bills_count%>
+                  </h2>
+                  <a href="/admin/bills/all/all/1" class="btn btn-outline-light mt-3">Xem chi tiết</a>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div class="col-md-3 text-center bg-success text-white p-3 m-3">
-            <div class="card-block">
-              <h3>Users</h3>
-              <h1 class="display-4"><i class="fa fa-users"></i>
-                <%=users_count%>
-              </h1>
-              <a href="/admin/users/1" class="btn btn-outline-light">View</a>
-            </div>
-          </div>
 
-          <div class="col-md-3 text-center bg-secondary text-white p-3 m-3">
-            <div class="card-block">
-              <h3>Bills</h3>
-              <h1 class="display-4"><i class="fa fa-money"></i>
-                <%=bills_count%>
-              </h1>
-              <a href="/admin/bills/all/all/1" class="btn btn-outline-light">View</a>
-            </div>
-          </div>
-        </div>
-        </div>
-        </div>
-        </section>
+          <%- include ('../partials/footer.ejs') %>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+  </body>
 
-        <%- include ('../partials/footer.ejs') %>
+  </html>

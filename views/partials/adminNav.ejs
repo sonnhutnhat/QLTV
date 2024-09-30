@@ -1,58 +1,80 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark p-0 sticky-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
   <div class="container">
-    <a class="navbar-brand" href="/admin">Home</a>
+    <a class="navbar-brand font-weight-bold" href="/admin">Admin Home</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav" id="myNav">
-        <li class="nav-item px-2">
-          <a class="nav-link" href="/admin/books/all/all/1">Quản lý sách</a>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link px-3" href="/admin/books/all/all/1">Quản lý sách</a>
         </li>
-
-        <li class="nav-item px-2">
-          <a class="nav-link" href="/admin/users/1">Quản lý người dùng</a>
+        <li class="nav-item">
+          <a class="nav-link px-3" href="/admin/users/1">Quản lý người dùng</a>
         </li>
-
-        <li class="nav-item px-2">
-          <a class="nav-link" href="/admin/bills/all/all/1">Quản lý phiếu mượn</a>
+        <li class="nav-item">
+          <a class="nav-link px-3" href="/admin/bills/all/all/1">Quản lý phiếu mượn</a>
         </li>
       </ul>
 
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item px-2">
-          <a class="nav-link" href="/admin/profile/<%=currentUser.username%>">
-            Thông tin tài khoản
+        <li class="nav-item">
+          <a class="nav-link px-3" href="/admin/profile/<%=currentUser.username%>">
+            <i class="fas fa-user mr-1"></i> Thông tin tài khoản
           </a>
         </li>
-
-        <li class="nav-item px-2">
-          <a class="nav-link" href="" data-toggle="modal" data-target="#logoutAdminModal"> Đăng xuất </a>
+        <li class="nav-item">
+          <a class="nav-link px-3" href="#" data-toggle="modal" data-target="#logoutAdminModal">
+            <i class="fas fa-sign-out-alt mr-1"></i> Đăng xuất
+          </a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
 
-<div class="modal fade" id="logoutAdminModal">
-  <div class="modal-dialog modal-lg">
+<!-- Logout Modal -->
+<div class="modal fade" id="logoutAdminModal" tabindex="-1" role="dialog" aria-labelledby="logoutAdminModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header bg-danger text-white">
-        <h5 class="modal-title" id="logoutAdminModalLabel">
-          Khi bạn lựa chọn đồng ý, bạn sẽ đăng xuất khỏi hệ thống. Bạn chắc chắn với điều này không?
-        </h5>
-        <button class="close" data-dismiss="modal"><span>&times;</span></button>
+        <h5 class="modal-title" id="logoutAdminModalLabel">Xác nhận đăng xuất</h5>
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
       <div class="modal-body">
+        Khi bạn lựa chọn đồng ý, bạn sẽ đăng xuất khỏi hệ thống. Bạn chắc chắn với điều này không?
+      </div>
+      <div class="modal-footer">
         <form action="/auth/admin/logout" method="GET">
-
-          <input type="submit" value="Yes" class="btn btn-danger btn-block m-1">
-
+          <button type="submit" class="btn btn-danger">Đồng ý</button>
         </form>
-        <input type="button" value="No" data-dismiss="modal" class="btn btn-success btn-block m-1">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
       </div>
     </div>
   </div>
 </div>
+
+<style>
+  .navbar-nav .nav-item .nav-link.active {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 0.25rem;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var currentPath = window.location.pathname;
+    var navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+
+    navLinks.forEach(function (link) {
+      if (link.getAttribute('href') === currentPath || currentPath.startsWith(link.getAttribute('href'))) {
+        link.classList.add('active');
+      }
+    });
+  });
+</script>
