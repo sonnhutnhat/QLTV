@@ -85,7 +85,7 @@ exports.getBooks = async (req, res, next) => {
 exports.findBooks = async (req, res, next) => {
   try {
     let page = req.params.page || 1;
-    const filter = req.body.filter.toLowerCase();
+    const filter = req.body.filter ? req.body.filter.toLowerCase() : "";
     const value = req.body.searchName;
 
     const searchObj = {};
@@ -417,16 +417,15 @@ exports.getBills = async (req, res, next) => {
 exports.findBills = async (req, res, next) => {
   try {
     let page = req.params.page || 1;
-    const filter = req.body.filter.toLowerCase();
-    const value = req.body.searchName;
+    const filter = req.body.filter ? req.body.filter.toLowerCase() : '';
+    const value = req.body.searchName || '';
     console.log(filter, value);
 
     let searchObj = {};
     if (filter === "user") {
-      searchObj["user.username"] = {
-        $regex: value,
-        $options: "i"
-      };
+      searchObj["user.username"] = { $regex: value, $options: "i" };
+    } else if (filter === "book") {
+      searchObj["book.title"] = { $regex: value, $options: "i" };
     } else {
       searchObj["book.title"] = {
         $regex: value,

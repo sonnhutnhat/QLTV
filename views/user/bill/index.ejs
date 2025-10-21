@@ -1,60 +1,433 @@
 <%- include ('../../partials/header.ejs') %>
 
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --success-gradient: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            --danger-gradient: linear-gradient(135deg, #ee0979 0%, #ff6a00 100%);
+            --warning-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --info-gradient: linear-gradient(135deg, #3a7bd5 0%, #00d2ff 100%);
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Header Section */
+        .page-header {
+            background: var(--primary-gradient);
+            padding: 3rem 0;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .page-header h1 {
+            color: white;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        .page-header .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Info Cards */
+        .info-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Point Display */
+        .point-display {
+            background: var(--success-gradient);
+            color: white;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .point-display .point-number {
+            font-size: 4rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            display: block;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .point-display .point-label {
+            font-size: 1.2rem;
+            opacity: 0.95;
+        }
+
+        /* Warning Box */
+        .warning-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 5px solid #f59e0b;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        .warning-box i {
+            color: #f59e0b;
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .warning-box p {
+            margin: 0;
+            color: #92400e;
+            font-weight: 600;
+        }
+
+        /* Danger Alert */
+        .danger-alert {
+            background: var(--danger-gradient);
+            color: white;
+            padding: 2rem;
+            border-radius: 16px;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(238, 9, 121, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        .danger-alert h3 {
+            margin: 0;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .danger-alert i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.02);
+            }
+        }
+
+        /* Back Button */
+        .back-button {
+            background: var(--info-gradient);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 12px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(58, 123, 213, 0.3);
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(58, 123, 213, 0.5);
+            color: white;
+            text-decoration: none;
+        }
+
+        .back-button i {
+            margin-right: 8px;
+        }
+
+        /* Bill Cards */
+        .bills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .bill-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+        }
+
+        .bill-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+            border-color: #667eea;
+        }
+
+        .bill-header {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .bill-header h4 {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 700;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+
+        .bill-header .bill-id {
+            font-size: 0.9rem;
+            font-family: monospace;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            word-break: break-all;
+        }
+
+        .bill-body {
+            padding: 1.5rem;
+        }
+
+        .bill-info-item {
+            display: flex;
+            padding: 1rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            align-items: center;
+        }
+
+        .bill-info-item:last-child {
+            border-bottom: none;
+        }
+
+        .bill-info-label {
+            font-weight: 600;
+            color: #666;
+            min-width: 120px;
+            display: flex;
+            align-items: center;
+        }
+
+        .bill-info-label i {
+            margin-right: 8px;
+            color: #667eea;
+            width: 20px;
+        }
+
+        .bill-info-value {
+            color: #333;
+            flex: 1;
+            font-weight: 500;
+        }
+
+        .bill-info-value strong {
+            color: #667eea;
+        }
+
+        /* Status Badges */
+        .status-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .status-overdue {
+            background: var(--danger-gradient);
+            color: white;
+        }
+
+        .status-borrowing {
+            background: var(--warning-gradient);
+            color: white;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #999;
+        }
+
+        .empty-state i {
+            font-size: 5rem;
+            color: #ddd;
+            margin-bottom: 1rem;
+        }
+
+        .empty-state p {
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .bills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .point-display .point-number {
+                font-size: 3rem;
+            }
+        }
+    </style>
     </head>
 
     <body>
-
-        <!--NAVIGATION BAR FOR ADMIN-->
+        <!--NAVIGATION BAR FOR USER-->
         <%- include ('../../partials/userNav.ejs') %>
 
-            <div class="container mt-5 pt-2">
-                <div class="row">
-                    <h4 class="text-center card-header pb-3">Thông tin phiếu đang mượn/quá hạn</h4>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            Điểm mượn sách còn lại: <%=user.point %>
-                        </li>
-                        <li class="list-group-item aleft aleft-warning">
-                            Lưu ý về trạng thái: -1: Quá hạn, 0: Đang mượn
-                        </li>
-                        <% if(user.point < 2) { %>
-                            <h3 class="alert alert-danger">Bạn đang ở mức độ báo động cao. Vui lòng hoàn thiện các thủ
-                                tục trả sách...</h3>
-                            <% } %>
-                                <li class="list-group-item">
-                                    <a href="/user"> Quay lại trang chủ </a>
-                                </li>
-                    </ul>
-                    <div class="col-md-6">
-                        <% bills.forEach(bill=> { %>
-                            <ul class="list-group list-group-flush mt-3">
-                                <li class="list-group-item" style="color:chocolate">
-                                    <h1>
-                                        Mã phiếu mượn:
-                                    </h1>
-                                    <%= bill._id %>
-                                </li>
-                                <li class="list-group-item"><strong> Title :</strong>
-                                    <%=bill.book.title%>
-                                </li>
-                                <li class="list-group-item"><strong> User name :</strong>
-                                    <%=bill.user.username%>
-                                </li>
-                                <li class="list-group-item"><strong> Date :</strong>
-                                    <%=bill.date.toDateString()%>
-                                </li>
-                                <li class="list-group-item"><strong> Dead date :</strong>
-                                    <%=bill.deadDate.toDateString()%>
-                                </li>
-                                <li class="list-group-item"><strong> Status :</strong>
-                                    <%=bill.status%>
-                                </li>
-                            </ul>
-                            <% }); %>
-                    </div>
-
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="container text-center">
+                    <h1><i class="fa fa-file-invoice"></i> Thông tin phiếu mượn của bạn</h1>
+                    <p class="subtitle">Theo dõi trạng thái các phiếu mượn sách của bạn</p>
                 </div>
             </div>
+
+            <div class="container">
+                <!-- User Info Card -->
+                <div class="info-card">
+                    <!-- Point Display -->
+                    <div class="point-display">
+                        <span class="point-number">
+                            <%= user.point %>
+                        </span>
+                        <span class="point-label">Điểm mượn sách còn lại</span>
+                    </div>
+
+                    <!-- Warning Box -->
+                    <div class="warning-box">
+                        <i class="fa fa-info-circle"></i>
+                        <p><strong>Lưu ý:</strong> -1: Quá hạn | 0: Đang mượn</p>
+                    </div>
+
+                    <!-- Danger Alert -->
+                    <% if(user.point < 2) { %>
+                        <div class="danger-alert">
+                            <i class="fa fa-exclamation-triangle"></i>
+                            <h3>⚠️ Cảnh báo mức độ cao!</h3>
+                            <p style="margin-top: 0.5rem;">Bạn đang ở mức độ báo động cao. Vui lòng hoàn thiện các thủ
+                                tục trả sách ngay!</p>
+                        </div>
+                        <% } %>
+
+                            <!-- Back Button -->
+                            <div class="text-center">
+                                <a href="/user" class="back-button">
+                                    <i class="fa fa-arrow-left"></i> Quay lại trang chủ
+                                </a>
+                            </div>
+                </div>
+
+                <!-- Bills Section -->
+                <% if(bills && bills.length> 0) { %>
+                    <h3 style="color: #333; margin-bottom: 2rem; font-weight: 700;">
+                        <i class="fa fa-list"></i> Danh sách phiếu mượn (Tổng: <%= bills.length %>)
+                    </h3>
+
+                    <div class="bills-grid">
+                        <% bills.forEach(bill=> { %>
+                            <div class="bill-card">
+                                <!-- Bill Header -->
+                                <div class="bill-header">
+                                    <h4>Mã phiếu mượn</h4>
+                                    <div class="bill-id">
+                                        <%= bill._id %>
+                                    </div>
+                                </div>
+
+                                <!-- Bill Body -->
+                                <div class="bill-body">
+                                    <div class="bill-info-item">
+                                        <div class="bill-info-label">
+                                            <i class="fa fa-book"></i> Tên sách:
+                                        </div>
+                                        <div class="bill-info-value">
+                                            <strong>
+                                                <%= bill.book.title %>
+                                            </strong>
+                                        </div>
+                                    </div>
+
+                                    <div class="bill-info-item">
+                                        <div class="bill-info-label">
+                                            <i class="fa fa-user"></i> Người mượn:
+                                        </div>
+                                        <div class="bill-info-value">
+                                            <%= bill.user.username %>
+                                        </div>
+                                    </div>
+
+                                    <div class="bill-info-item">
+                                        <div class="bill-info-label">
+                                            <i class="fa fa-calendar-plus"></i> Ngày mượn:
+                                        </div>
+                                        <div class="bill-info-value">
+                                            <%= bill.date.toDateString() %>
+                                        </div>
+                                    </div>
+
+                                    <div class="bill-info-item">
+                                        <div class="bill-info-label">
+                                            <i class="fa fa-calendar-times"></i> Hạn trả:
+                                        </div>
+                                        <div class="bill-info-value">
+                                            <%= bill.deadDate.toDateString() %>
+                                        </div>
+                                    </div>
+
+                                    <div class="bill-info-item">
+                                        <div class="bill-info-label">
+                                            <i class="fa fa-flag"></i> Trạng thái:
+                                        </div>
+                                        <div class="bill-info-value">
+                                            <% if (bill.status===-1) { %>
+                                                <span class="status-badge status-overdue">
+                                                    <i class="fa fa-exclamation-triangle"></i> Quá hạn
+                                                </span>
+                                                <% } else if (bill.status===0) { %>
+                                                    <span class="status-badge status-borrowing">
+                                                        <i class="fa fa-clock"></i> Đang mượn
+                                                    </span>
+                                                    <% } %>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <% }); %>
+                    </div>
+                    <% } else { %>
+                        <!-- Empty State -->
+                        <div class="info-card empty-state">
+                            <i class="fa fa-inbox"></i>
+                            <p>Bạn chưa có phiếu mượn nào đang hoạt động</p>
+                        </div>
+                        <% } %>
             </div>
 
             <%- include ('../../partials/footer.ejs') %>
+    </body>

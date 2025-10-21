@@ -1,5 +1,212 @@
 <%- include ('../../partials/header.ejs') %>
 
+  <style>
+    :root {
+      --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --success-gradient: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+      --danger-gradient: linear-gradient(135deg, #ee0979 0%, #ff6a00 100%);
+      --info-gradient: linear-gradient(135deg, #3a7bd5 0%, #00d2ff 100%);
+    }
+
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
+    }
+
+    #main-header {
+      background: var(--primary-gradient) !important;
+      padding: 2rem 0 !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    #main-header h1 {
+      color: white !important;
+      font-weight: 700;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    #main-header i {
+      font-size: 2rem;
+      margin-right: 10px;
+    }
+
+    #search_bar {
+      background: white !important;
+      border-radius: 20px;
+      padding: 2rem !important;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-control,
+    select.form-control {
+      border-radius: 12px;
+      border: 2px solid #e0e0e0;
+      padding: 5px 17px;
+      transition: all 0.3s ease;
+    }
+
+    .form-control:focus,
+    select.form-control:focus {
+      border-color: #667eea;
+      box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+    }
+
+    .btn-outline-primary {
+      background: var(--primary-gradient);
+      border: none;
+      border-radius: 12px;
+      padding: 7px 30px;
+      color: white !important;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .btn-outline-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-primary {
+      background: var(--success-gradient) !important;
+      border: none;
+      border-radius: 12px;
+      padding: 12px 30px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(17, 153, 142, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(17, 153, 142, 0.5);
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+      border: none !important;
+    }
+
+    .table {
+      margin-bottom: 0;
+    }
+
+    .table thead {
+      background: var(--primary-gradient);
+    }
+
+    .table thead th {
+      color: white;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.5px;
+      padding: 1rem;
+      border: none;
+    }
+
+    .table tbody tr {
+      transition: all 0.3s ease;
+    }
+
+    .table tbody tr:hover {
+      background-color: #f8f9ff;
+      transform: scale(1.01);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .table tbody td {
+      vertical-align: middle;
+      padding: 1rem;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .btn-info {
+      background: var(--info-gradient) !important;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 16px;
+      color: white !important;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .btn-info:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(58, 123, 213, 0.4);
+    }
+
+    .btn-danger {
+      background: var(--danger-gradient) !important;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 16px;
+      color: white !important;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .btn-danger:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(238, 9, 121, 0.4);
+    }
+
+    .page-link {
+      border-radius: 8px;
+      margin: 0 3px;
+      border: 2px solid #e0e0e0;
+      color: #667eea;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .page-link:hover {
+      background: var(--primary-gradient);
+      color: white !important;
+      border-color: transparent;
+      transform: translateY(-2px);
+    }
+
+    .page-item.active .page-link {
+      background: var(--primary-gradient);
+      border-color: transparent;
+      color: white !important;
+    }
+
+    .page-item.disabled .page-link {
+      background: #f5f5f5;
+      border-color: #e0e0e0;
+    }
+
+    .pagination {
+      margin-top: 1.5rem;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .table tbody tr {
+      animation: fadeInUp 0.5s ease-out;
+    }
+
+    #bookInventory {
+      margin-bottom: 3rem;
+    }
+  </style>
+
   </head>
 
   <body>
@@ -10,8 +217,8 @@
       <header id="main-header" class="py-2 bg-white text-black">
         <div class="container">
           <div class="row">
-            <div class="col-md-6">
-              <h1><i class="fa fa-pencil"></i> Quản lý sách </h1>
+            <div class="col-md-12 text-center">
+              <h1><i class="fa fa-book-open"></i> Quản lý Thư viện Sách</h1>
             </div>
           </div>
         </div>
@@ -25,9 +232,9 @@
               <div class="col-md-5 p-1">
                 <select name="filter" class="form-control">
                   <option selected disabled>Select Option...</option>
-                  <option name="title">Title</option>
-                  <option name="author">Author</option>
-                  <option name="category">Category</option>
+                  <option value="title">Title</option>
+                  <option value="author">Author</option>
+                  <option value="category">Category</option>
                 </select>
               </div>
 
@@ -47,7 +254,9 @@
 
         <div class="container">
           <div class="col-md-2 p-1">
-            <a href="/admin/books/add" class="btn btn-primary">Add new book</a>
+            <a href="/admin/books/add" class="btn btn-primary">
+              <i class="fa fa-plus-circle"></i> Add new book
+            </a>
           </div>
         </div>
 
@@ -60,22 +269,21 @@
                   <table class="table table-striped">
                     <thead class="thead-inverse">
                       <tr>
-                        <th>Title</th>
-                        <th>Author</th>
-                        <th>Category</th>
-                        <th>Published_at</th>
-                        <th>Total_book</th>
-                        <th>Remain_book</th>
-                        <th>Edit</th>
+                        <th><i class="fa fa-book"></i> Title</th>
+                        <th><i class="fa fa-user"></i> Author</th>
+                        <th><i class="fa fa-bookmark"></i> Category</th>
+                        <th><i class="fa fa-calendar"></i> Published_at</th>
+                        <th><i class="fa fa-box"></i> Total_book</th>
+                        <th><i class="fa fa-check-circle"></i> Remain_book</th>
+                        <th><i class="fa fa-cog"></i> Edit</th>
                       </tr>
                     </thead>
                     <tbody>
                       <% books.forEach(book=> { %>
-
                         <tr>
-                          <td>
-                            <%= book.title %>
-                          </td>
+                          <td><strong>
+                              <%= book.title %>
+                            </strong></td>
                           <td>
                             <%= book.author %>
                           </td>
@@ -85,17 +293,21 @@
                           <td>
                             <%= book.published_at.getFullYear() %>
                           </td>
-                          <td>
-                            <%= book.total_book %>
-                          </td>
-                          <td>
-                            <%= book.remain_book %>
-                          </td>
+                          <td><strong>
+                              <%= book.total_book %>
+                            </strong></td>
+                          <td><strong>
+                              <%= book.remain_book %>
+                            </strong></td>
                           <td>
                             <span>
-                              <a href="/admin/books/update/<%=book._id%>" class="btn btn-info btn-sm m-1">Update</a>
+                              <a href="/admin/books/update/<%=book._id%>" class="btn btn-info btn-sm m-1">
+                                <i class="fa fa-edit"></i> Update
+                              </a>
                               <a href="/admin/books/delete/<%=book._id%>?_method=DELETE"
-                                class="btn btn-sm btn-danger m-1" me>Delete</a>
+                                class="btn btn-sm btn-danger m-1">
+                                <i class="fa fa-trash"></i> Delete
+                              </a>
                             </span>
                           </td>
                         </tr>
@@ -113,7 +325,8 @@
                               <a href="/admin/books/<%=filter%>/<%=value%>/1" class="page-link">First</a>
                             </li>
                             <% } %>
-                              <% var i=(Number(current)> 5 ? Number(current) - 4 : 1) %> <% if (i !==1) { %>
+                              <% var i=(Number(current)> 5 ? Number(current) - 4 : 1) %>
+                                <% if (i !==1) { %>
                                   <li class="page-item disabled"><a class="page-link">...</a></li>
                                   <% } %>
                                     <% for (; i <=(Number(current) + 4) && i <=pages; i++) { %>
